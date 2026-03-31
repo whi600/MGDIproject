@@ -12,8 +12,8 @@ defineProps({
     <div class="container">
       <p class="section-kicker">Почему это круто</p>
       <h2 class="why-statement">
-        Когда вера встречается с действием,
-        <span class="accent-lime">город меняется</span>
+        Вера встречается с
+        <span class="accent-lime">действием</span>
       </h2>
       <p class="why-text">
         Здесь люди служат Богу через конкретные дела, и каждый шаг превращается в реальную пользу для других.

@@ -23,14 +23,6 @@ const props = defineProps({
   posterAlt: {
     type: String,
     default: 'Приветственное видео о служении в проекте МГДИ'
-  },
-  quotes: {
-    type: Array,
-    default: () => [
-      '«Служите Господу с радостью» (Псалом 99:2)',
-      '«Всё, что делаете, делайте как для Господа» (Колоссянам 3:23)',
-      'Здесь вера становится делом - вместе, честно и с любовью.'
-    ]
   }
 })
 
@@ -97,12 +89,6 @@ onBeforeUnmount(() => {
         <div class="portal-overlay" aria-hidden="true"></div>
         <p class="portal-tag">Приветственное видео</p>
       </div>
-
-      <div class="quote-grid">
-        <p v-for="quote in props.quotes" :key="quote" class="quote-card">
-          {{ quote }}
-        </p>
-      </div>
     </div>
   </section>
 </template>
@@ -156,16 +142,19 @@ onBeforeUnmount(() => {
   --corner-size: 96px;
   --corner-thickness: 16px;
   --corner-offset: 18px;
+  width: min(100%, 980px);
+  margin-inline: auto;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 26px 54px rgba(3, 6, 18, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 60px rgba(3, 6, 18, 0.45);
   background: #030715;
   isolation: isolate;
 }
 
 .portal-media {
   width: 100%;
-  height: clamp(300px, 52vw, 620px);
+  height: clamp(240px, 42vw, 500px);
   object-fit: cover;
   opacity: 0.24;
   transform: scale(1.08);
@@ -307,30 +296,6 @@ onBeforeUnmount(() => {
   transition-delay: 0.12s;
 }
 
-.quote-grid {
-  margin-top: 16px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.quote-card {
-  margin: 0;
-  padding: 14px 16px;
-  border-radius: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-@media (max-width: 1040px) {
-  .quote-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 900px) {
   .life-lead {
     margin-bottom: 20px;
@@ -343,12 +308,7 @@ onBeforeUnmount(() => {
   }
 
   .portal-media {
-    height: clamp(230px, 58vw, 420px);
-  }
-
-  .quote-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    height: clamp(200px, 52vw, 360px);
   }
 
   .life::after {
