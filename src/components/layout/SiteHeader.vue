@@ -64,9 +64,8 @@ const navItems = [
 }
 
 .header-grid {
-  position: relative;
   display: grid;
-  grid-template-columns: 214px 1fr auto;
+  grid-template-columns: minmax(176px, 214px) 1fr minmax(176px, 214px);
   align-items: center;
   gap: 24px;
 }
@@ -78,7 +77,7 @@ const navItems = [
   height: 74px;
   width: 176px;
   overflow: hidden;
-  margin-left: -67px;
+  margin-left: -12px;
 }
 
 .logo-image {
@@ -92,10 +91,7 @@ const navItems = [
 }
 
 .main-nav {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  justify-self: center;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -103,8 +99,9 @@ const navItems = [
   border-radius: 0;
   background: none;
   border: none;
+  box-shadow: none;
+  outline: none;
   backdrop-filter: none;
-  z-index: 2;
 }
 
 .main-nav a {
@@ -121,11 +118,14 @@ const navItems = [
 }
 
 .header-cta {
+  justify-self: end;
+  min-width: 176px;
+  text-align: center;
   padding: 11px 19px;
   border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.03);
-  margin-right: -67px;
+  margin-right: -12px;
   color: rgba(255, 255, 255, 0.96);
   font-size: 0.82rem;
   font-weight: 700;
@@ -142,7 +142,7 @@ const navItems = [
 
 @media (max-width: 1200px) {
   .header-grid {
-    grid-template-columns: 190px 1fr auto;
+    grid-template-columns: minmax(150px, 190px) 1fr minmax(150px, 190px);
   }
 
   .main-nav {
@@ -165,7 +165,7 @@ const navItems = [
   .logo {
     height: 62px;
     width: 142px;
-    margin-left: -63px;
+    margin-left: -8px;
   }
 
   .logo-image {
@@ -176,9 +176,6 @@ const navItems = [
   .main-nav {
     order: 3;
     position: static;
-    left: auto;
-    top: auto;
-    transform: none;
     grid-column: span 2;
     justify-content: flex-start;
     overflow-x: auto;
@@ -195,7 +192,8 @@ const navItems = [
   }
 
   .header-cta {
-    margin-right: -63px;
+    margin-right: -8px;
+    min-width: auto;
     padding: 8px 14px;
     font-size: 0.72rem;
   }
