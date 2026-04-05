@@ -1,5 +1,5 @@
 ﻿<script setup>
-import heroCover from '../../assets/hero-cover.jpg'
+import heroCover from '../../assets/priv-video-loop.gif'
 </script>
 
 <template>
@@ -41,20 +41,24 @@ import heroCover from '../../assets/hero-cover.jpg'
   background-size: cover;
   background-position: center;
   z-index: 0;
-  filter: grayscale(100%) blur(18px) contrast(1.06);
-  transform: scale(1.12);
+  filter: grayscale(100%) blur(26px) contrast(1.08) brightness(0.78);
+  transform: scale(1.18);
 }
 
 .hero-media {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 22%;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  max-width: min(100vw, 78vh);
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  object-position: center;
   filter: grayscale(100%) contrast(1.04);
   z-index: 1;
-  opacity: 0.92;
+  opacity: 0.96;
 }
 
 .hero-overlay {
@@ -62,9 +66,8 @@ import heroCover from '../../assets/hero-cover.jpg'
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0)),
-    linear-gradient(180deg, rgba(4, 8, 22, 0.38) 0%, rgba(4, 8, 22, 0.62) 52%, rgba(4, 8, 22, 0.86) 100%),
-    linear-gradient(90deg, rgba(5, 10, 26, 0.68) 0%, rgba(5, 10, 26, 0.1) 24%, rgba(5, 10, 26, 0.1) 76%, rgba(5, 10, 26, 0.68) 100%);
+    radial-gradient(ellipse at center, rgba(4, 8, 22, 0) 44%, rgba(4, 8, 22, 0.52) 76%, rgba(4, 8, 22, 0.88) 100%),
+    linear-gradient(180deg, rgba(4, 8, 22, 0.24) 0%, rgba(4, 8, 22, 0.46) 52%, rgba(4, 8, 22, 0.76) 100%);
 }
 
 .hero-noise {

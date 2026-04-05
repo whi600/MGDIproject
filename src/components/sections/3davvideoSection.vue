@@ -96,11 +96,11 @@ onBeforeUnmount(() => {
 <style scoped>
 .life {
   position: relative;
+  overflow: hidden;
   background:
     radial-gradient(circle at 14% 16%, rgba(191, 211, 90, 0.11), rgba(191, 211, 90, 0) 34%),
     radial-gradient(circle at 86% 18%, rgba(255, 98, 51, 0.1), rgba(255, 98, 51, 0) 34%),
     linear-gradient(160deg, #07112c 0%, #0a1a44 48%, #06163f 100%);
-  overflow: hidden;
 }
 
 .life-shell {
@@ -344,3 +344,4 @@ onBeforeUnmount(() => {
   }
 }
 </style>
+

@@ -12,11 +12,10 @@ defineProps({
     <div class="container">
       <p class="section-kicker">Почему это круто</p>
       <h2 class="why-statement">
-        Вера встречается с
-        <span class="accent-lime">действием</span>
+        Когда вера встречается с действием,
       </h2>
       <p class="why-text">
-        Здесь люди служат Богу через конкретные дела, и каждый шаг превращается в реальную пользу для других.
+        Здесь полностью менятеся твоя жизнь
       </p>
 
       <div class="grid-12 why-grid">
