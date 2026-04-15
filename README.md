@@ -1,61 +1,130 @@
-# Готовый старт: Vue + Docker
+# my-codex-skills (test1)
 
-Проект уже готов для работы.
+This is a global skill system for Codex focused on **web development, UI quality, and safe code changes**.
 
-## Что нужно установить на Windows
+It combines:
+- external skills (pulled from GitHub)
+- local global rules (defined below)
 
-1. `Git`
-2. `Node.js (LTS)`
-3. `Docker Desktop`
+---
 
-Если после установки `Node.js` команда `npm` в PowerShell не работает, используйте `npm.cmd`.
+# 🧠 GLOBAL RULES (ALWAYS APPLY)
 
-## Как запустить проект без Docker (обычный способ)
+## 📌 Mandatory Rule For Codex
 
-1. Откройте терминал в папке проекта:
-   - `cd vue-site`
-2. Поставьте зависимости:
-   - `npm install`
-3. Запустите сайт:
-   - `npm run dev`
-4. Откройте в браузере:
-   - `http://localhost:5173`
+- Before starting any task, Codex must read this README and follow all rules in it.
+- These rules are mandatory for all project work and must be respected at all times.
+- Codex always ориентируется на правила этого README, читает их и соблюдает их всегда.
 
-## Как запустить проект через Docker
+## 🛡 Safety Rules
 
-1. Убедитесь, что Docker Desktop запущен.
-   - Если команда `docker` не находится, закройте и заново откройте терминал.
-2. В папке проекта выполните:
-   - `docker compose up --build`
-3. Откройте в браузере:
-   - `http://localhost:5173`
-4. Остановка:
-   - `Ctrl + C` в терминале
+- Do not make broad or sweeping changes unless clearly necessary.
+- Prefer minimal, targeted edits.
+- Only modify files directly related to the task.
+- Do not rewrite unrelated components, configs, or styles.
 
-## Полезные команды
+- Do not delete existing code or files unless explicitly required.
+- Do not perform destructive or irreversible actions.
 
-1. Проверка сборки:
-   - `npm run build`
-2. Если что-то зависло в Docker:
-   - `docker compose down`
+- Do not add, remove, or update dependencies unless explicitly asked.
+- Do not modify config files, environment settings, or build setup unless required.
 
-## Если Docker не запускается (ошибка 500 или `hasNoVirtualization`)
+---
 
-1. Закройте Docker Desktop.
-2. Откройте PowerShell **от имени администратора**.
-3. Выполните:
-   - `wsl --install --no-distribution`
-4. Перезагрузите компьютер.
-5. Запустите Docker Desktop снова.
-6. Проверьте:
-   - `docker version`
+## 🏗 Code & Architecture Rules
 
-## Где лежат важные файлы
+- Before editing, inspect the codebase and understand structure, patterns, and dependencies.
+- Follow existing architecture and conventions.
 
-1. Главная страница:
-   - `src/App.vue`
-2. Запуск Vue:
-   - `src/main.js`
-3. Docker-настройка:
-   - `Dockerfile`
-   - `docker-compose.yml`
+- Do not create new files, hooks, utilities, or abstractions unless truly necessary.
+- Prefer reusing existing components and patterns.
+
+- Prefer simple and maintainable solutions over complex or over-engineered ones.
+
+- Do not replace working logic with mock data, placeholders, or fake implementations.
+
+---
+
+## 🎨 UI & Frontend Rules
+
+- Build clean, intentional, and well-composed interfaces.
+- Avoid generic AI-looking layouts and repetitive sections.
+
+- Always consider responsive design (desktop, tablet, mobile).
+
+- Maintain clear visual hierarchy:
+  spacing, typography, grouping, contrast.
+
+- Avoid overdesign:
+  no unnecessary gradients, glassmorphism, or random effects.
+
+- Use motion carefully:
+  animations should improve clarity, not distract.
+
+- Design should prioritize content, not decoration.
+
+---
+
+## ⚙️ Behavior Rules
+
+- Do not assume things without checking code.
+- If something is unclear — make a safe assumption and proceed conservatively.
+
+- For larger changes, prefer step-by-step improvements instead of full rewrites.
+
+- Preserve working functionality over making code “cleaner”.
+
+---
+
+## 🧾 Output Rules
+
+- After making changes, briefly explain:
+  - what was changed
+  - which files were affected
+  - why it was done
+
+- Do not add excessive comments in code.
+- Only comment non-obvious logic.
+
+---
+
+# 🧩 SKILLS (INSTALLED SEPARATELY)
+
+This setup uses external skills:
+
+- impeccable → UI generation, audit, polish
+- taste-skill → design taste & frontend quality
+- design-motion-principles → motion & animation audit
+
+Install via:
+
+npx skills add pbakaus/impeccable
+npx skills add Leonxinx/taste-skill
+
+---
+
+# ⚡ HOW TO USE
+
+Typical workflow:
+
+1. Generate UI:
+→ use impeccable craft
+
+2. Improve UI:
+→ use /polish or /critique
+
+3. Check UX:
+→ use /audit
+
+4. Improve animations:
+→ ask for motion audit
+
+---
+
+# 🧠 PHILOSOPHY
+
+- Do less, but better
+- Respect existing code
+- Avoid unnecessary complexity
+- Build clean and intentional UI
+- Think before changing anything

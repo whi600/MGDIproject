@@ -6,7 +6,7 @@ import heroVideo from '../../assets/hero_bw_desktop_1920x1080.mp4'
 <template>
   <section id="priv-video" class="hero" data-block-name="Priv.video">
     <div class="hero-backdrop" :style="{ backgroundImage: `url(${heroPoster})` }" aria-hidden="true"></div>
-    <video class="hero-media" :poster="heroPoster" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <video class="hero-media" :poster="heroPoster" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
       <source :src="heroVideo" type="video/mp4" />
     </video>
     <div class="hero-overlay" aria-hidden="true"></div>

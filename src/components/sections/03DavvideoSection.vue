@@ -10,8 +10,8 @@ import cornerDecorImage from '../../assets/уголок для краев.png'
 
 const iconSet = [guitarCard, communicationCard, learningCard, tripsCard]
 const cornerDecorMask = `url(${cornerDecorImage})`
-const rowDurations = [55, 68, 60, 75]
-const patternRows = Array.from({ length: 12 }, (_, index) => ({
+const rowDurations = [62, 76, 68, 84]
+const patternRows = Array.from({ length: 10 }, (_, index) => ({
   id: `row-${index + 1}`,
   reverse: index % 2 === 1,
   duration: rowDurations[index % rowDurations.length] + Math.floor(index / 4) * 4
@@ -150,6 +150,17 @@ onBeforeUnmount(() => {
     linear-gradient(160deg, #07112c 0%, #0a1a44 48%, #06163f 100%);
 }
 
+.life::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(6, 22, 63, 0.5) 0%, rgba(6, 22, 63, 0.42) 48%, rgba(6, 22, 63, 0.58) 100%),
+    radial-gradient(circle at 50% 34%, rgba(6, 22, 63, 0.08), rgba(6, 22, 63, 0.42) 78%);
+}
+
 .life-shell {
   position: relative;
   z-index: 3;
@@ -157,7 +168,6 @@ onBeforeUnmount(() => {
 
 .mgdi-pattern {
   --mgdi-shift: 1540px;
-  --mgdi-steps: 1540;
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -187,7 +197,7 @@ onBeforeUnmount(() => {
   transform: translate3d(0, 0, 0);
   animation-name: mgdi-slide-left;
   animation-duration: var(--mgdi-duration, 60s);
-  animation-timing-function: steps(var(--mgdi-steps), end);
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
@@ -202,8 +212,8 @@ onBeforeUnmount(() => {
   min-width: 0;
   height: 90px;
   margin-right: 0;
-  opacity: 0.22;
-  filter: saturate(0.92) brightness(0.9);
+  opacity: 0.14;
+  filter: saturate(0.84) brightness(0.78);
   image-rendering: auto;
   user-select: none;
 }
@@ -233,16 +243,17 @@ onBeforeUnmount(() => {
 .life-lead {
   margin: 16px 0 28px;
   max-width: 760px;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.03rem;
-  line-height: 1.58;
+  line-height: 1.62;
+  text-shadow: 0 2px 10px rgba(4, 8, 20, 0.32);
 }
 
 .portal-stage {
   position: relative;
-  --corner-width: 148px;
-  --corner-height: 114px;
-  --corner-offset: -34px;
+  --corner-width: 128px;
+  --corner-height: 98px;
+  --corner-offset: -18px;
   --corner-mask-size-x: 208.5%;
   --corner-mask-size-y: 241.4%;
   --corner-color: var(--accent-lime);
@@ -306,7 +317,7 @@ onBeforeUnmount(() => {
   mask-position: center;
   -webkit-mask-size: var(--corner-mask-size-x) var(--corner-mask-size-y);
   mask-size: var(--corner-mask-size-x) var(--corner-mask-size-y);
-  box-shadow: 0 10px 24px rgba(191, 211, 90, 0.24);
+  box-shadow: 0 8px 18px rgba(191, 211, 90, 0.2);
 }
 
 .portal-corner-right::before {
@@ -460,7 +471,7 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 1200px) {
-  .mgdi-row:nth-child(n + 11) {
+  .mgdi-row:nth-child(n + 9) {
     display: none;
   }
 
@@ -469,12 +480,11 @@ onBeforeUnmount(() => {
 @media (max-width: 900px) {
   .mgdi-pattern {
     --mgdi-shift: 770px;
-    --mgdi-steps: 770;
     padding: 10px 0;
     gap: 6px;
   }
 
-  .mgdi-row:nth-child(n + 6) {
+  .mgdi-row:nth-child(n + 5) {
     display: none;
   }
 
@@ -487,9 +497,9 @@ onBeforeUnmount(() => {
   }
 
   .portal-stage {
-    --corner-width: 104px;
-    --corner-height: 80px;
-    --corner-offset: -20px;
+    --corner-width: 92px;
+    --corner-height: 70px;
+    --corner-offset: -12px;
   }
 
   .portal-media {

@@ -31,12 +31,12 @@
   --corner-decor-image: url('../assets/уголок для краев.png');
   --corner-mask-size-x: 208.5%;
   --corner-mask-size-y: 241.4%;
-  --corner-lg-width: 164px;
-  --corner-lg-height: 126px;
-  --corner-lg-inset: -46px;
-  --corner-sm-width: 86px;
-  --corner-sm-height: 66px;
-  --corner-sm-inset: -22px;
+  --corner-lg-width: 136px;
+  --corner-lg-height: 104px;
+  --corner-lg-inset: -30px;
+  --corner-sm-width: 72px;
+  --corner-sm-height: 55px;
+  --corner-sm-inset: -12px;
 }
 
 * {
@@ -274,12 +274,12 @@ a {
 
 @media (max-width: 900px) {
   :root {
-    --corner-lg-width: 126px;
-    --corner-lg-height: 97px;
-    --corner-lg-inset: -32px;
-    --corner-sm-width: 64px;
-    --corner-sm-height: 49px;
-    --corner-sm-inset: -14px;
+    --corner-lg-width: 102px;
+    --corner-lg-height: 78px;
+    --corner-lg-inset: -18px;
+    --corner-sm-width: 52px;
+    --corner-sm-height: 40px;
+    --corner-sm-inset: -8px;
   }
 
   .container {

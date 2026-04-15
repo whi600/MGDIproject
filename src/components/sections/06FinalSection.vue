@@ -1,8 +1,8 @@
 ﻿<script setup>
 import mgdiPatternImage from '../../assets/mgdi-pattern-strip.png'
 
-const rowDurations = [55, 68, 60, 75]
-const patternRows = Array.from({ length: 7 }, (_, index) => ({
+const rowDurations = [64, 78, 70, 86]
+const patternRows = Array.from({ length: 6 }, (_, index) => ({
   id: `final-row-${index + 1}`,
   reverse: index % 2 === 1,
   duration: rowDurations[index % rowDurations.length] + Math.floor(index / 4) * 4
@@ -38,8 +38,8 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
         которые несут пользу людям и городу, вы в правильном месте.
       </p>
       <div class="final-actions">
-        <a class="btn btn-primary" href="#">Подать заявку</a>
-        <a class="btn btn-secondary" href="#">Стать партнером</a>
+        <a class="btn btn-primary final-btn" href="#3davvideo">Подать заявку</a>
+        <a class="btn btn-secondary final-btn" href="#moments">Стать партнером</a>
       </div>
     </div>
   </section>
@@ -64,22 +64,37 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   z-index: 2;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 100%);
-  background-size: 120px 120px;
-  opacity: 0.25;
+    linear-gradient(180deg, rgba(7, 22, 66, 0.36) 0%, rgba(7, 22, 66, 0.42) 50%, rgba(7, 22, 66, 0.5) 100%),
+    radial-gradient(circle at 52% 26%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 58%);
+  opacity: 1;
+}
+
+.final::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 146px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 26, 83, 0) 0%,
+    rgba(8, 26, 83, 0.24) 42%,
+    rgba(8, 26, 83, 0.54) 100%
+  );
 }
 
 .final-pattern {
   --final-shift: 1540px;
-  --final-steps: 1540;
   position: absolute;
   inset: 0;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.6vw, 12px);
-  padding: clamp(10px, 1.4vw, 20px) 0;
+  gap: 0;
+  padding: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -102,7 +117,7 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   transform: translate3d(0, 0, 0);
   animation-name: final-slide-left;
   animation-duration: var(--final-duration, 60s);
-  animation-timing-function: steps(var(--final-steps), end);
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
@@ -117,8 +132,8 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   min-width: 0;
   height: 90px;
   margin-right: 0;
-  opacity: 0.22;
-  filter: saturate(0.92) brightness(0.9);
+  opacity: 0.14;
+  filter: saturate(0.84) brightness(0.78);
   image-rendering: auto;
   user-select: none;
 }
@@ -126,6 +141,7 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
 .final-shell {
   position: relative;
   z-index: 3;
+  max-width: 1020px;
 }
 
 .final-title {
@@ -133,24 +149,32 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   max-width: 960px;
   font-family: 'Dela Gothic One', sans-serif;
   font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 0.94;
+  letter-spacing: -0.015em;
+  line-height: 0.96;
   text-transform: uppercase;
   font-size: clamp(2.1rem, 6vw, 5.1rem);
+  text-wrap: balance;
 }
 
 .final-text {
   margin: 18px 0 30px;
   max-width: 680px;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.02rem;
-  line-height: 1.56;
+  line-height: 1.62;
+  text-shadow: 0 2px 10px rgba(4, 8, 20, 0.32);
+  text-wrap: pretty;
 }
 
 .final-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.final-btn {
+  min-width: 210px;
+  letter-spacing: 0.01em;
 }
 
 @keyframes final-slide-left {
@@ -174,7 +198,7 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
 }
 
 @media (max-width: 1200px) {
-  .final-row:nth-child(n + 7) {
+  .final-row:nth-child(n + 5) {
     display: none;
   }
 }
@@ -182,12 +206,11 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
 @media (max-width: 900px) {
   .final-pattern {
     --final-shift: 770px;
-    --final-steps: 770;
     padding: 10px 0;
     gap: 6px;
   }
 
-  .final-row:nth-child(n + 5) {
+  .final-row:nth-child(n + 4) {
     display: none;
   }
 
@@ -198,6 +221,35 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   .final-text {
     margin-bottom: 24px;
   }
+
+  .final-actions {
+    gap: 10px;
+  }
+
+  .final-btn {
+    min-width: 188px;
+  }
+}
+
+@media (max-width: 640px) {
+  .final-title {
+    line-height: 1;
+  }
+
+  .final-text {
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .final-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .final-btn {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -206,4 +258,3 @@ const patternRows = Array.from({ length: 7 }, (_, index) => ({
   }
 }
 </style>
-

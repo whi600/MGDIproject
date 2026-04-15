@@ -21,7 +21,7 @@ const props = defineProps({
   },
   ctaUrl: {
     type: String,
-    default: '/open-project'
+    default: '#final'
   }
 })
 
@@ -30,29 +30,25 @@ const cities = Object.freeze([
     id: 'cherepovets',
     name: 'Череповец',
     regionCode: 'VLG',
-    regionName: 'Вологодская область',
-    url: '/projects/cherepovets'
+    regionName: 'Вологодская область'
   },
   {
     id: 'perm',
     name: 'Пермь',
     regionCode: 'PER',
-    regionName: 'Пермский край',
-    url: '/projects/perm'
+    regionName: 'Пермский край'
   },
   {
     id: 'omsk',
     name: 'Омск',
     regionCode: 'OMS',
-    regionName: 'Омская область',
-    url: '/projects/omsk'
+    regionName: 'Омская область'
   },
   {
     id: 'krasnoyarsk',
     name: 'Красноярск',
     regionCode: 'KYA',
-    regionName: 'Красноярский край',
-    url: '/projects/krasnoyarsk'
+    regionName: 'Красноярский край'
   }
 ])
 
@@ -163,14 +159,41 @@ function clearCityHighlight() {
 
 <style scoped>
 .geo {
-  background:
-    radial-gradient(circle at 86% 18%, rgba(255, 98, 51, 0.08), rgba(255, 98, 51, 0) 35%),
-    radial-gradient(circle at 14% 80%, rgba(191, 211, 90, 0.14), rgba(191, 211, 90, 0) 34%),
-    linear-gradient(180deg, #f4f1e9 0%, #ece8dd 100%);
+  position: relative;
+  overflow: hidden;
+  --surface-border: 1px solid rgba(16, 26, 51, 0.14);
+  --surface-radius: var(--radius-lg);
+  --surface-shadow: var(--shadow-soft);
+  background-color: #ece8de;
+}
+
+.geo::before,
+.geo::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.geo::before {
+  width: clamp(300px, 30vw, 460px);
+  height: clamp(300px, 30vw, 460px);
+  top: 16%;
+  right: -14%;
+  background: radial-gradient(circle, rgba(255, 98, 51, 0.1), rgba(255, 98, 51, 0) 74%);
+}
+
+.geo::after {
+  width: clamp(240px, 24vw, 360px);
+  height: clamp(240px, 24vw, 360px);
+  left: -10%;
+  bottom: 18%;
+  background: radial-gradient(circle, rgba(191, 211, 90, 0.12), rgba(191, 211, 90, 0) 74%);
 }
 
 .geo-shell {
   position: relative;
+  z-index: 1;
 }
 
 .geo-kicker {
@@ -181,6 +204,7 @@ function clearCityHighlight() {
 .geo-title {
   max-width: 880px;
   color: #101a35;
+  text-wrap: balance;
 }
 
 .geo-lead {
@@ -188,6 +212,7 @@ function clearCityHighlight() {
   max-width: 720px;
   color: #44516d;
   line-height: 1.58;
+  text-wrap: pretty;
 }
 
 .geo-layout {
@@ -199,10 +224,10 @@ function clearCityHighlight() {
 
 .geo-map-card {
   position: relative;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(16, 26, 51, 0.14);
-  background: rgba(245, 247, 252, 0.9);
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--surface-radius);
+  border: var(--surface-border);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 248, 255, 0.9) 100%);
+  box-shadow: var(--surface-shadow);
   padding: clamp(14px, 2vw, 24px);
 }
 
@@ -211,18 +236,12 @@ function clearCityHighlight() {
 }
 
 .geo-side-card {
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(16, 26, 51, 0.14);
+  border-radius: var(--surface-radius);
+  border: var(--surface-border);
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 255, 0.9) 100%),
-    repeating-linear-gradient(
-      32deg,
-      rgba(17, 70, 216, 0.03) 0,
-      rgba(17, 70, 216, 0.03) 8px,
-      transparent 8px,
-      transparent 16px
-    );
-  box-shadow: var(--shadow-soft);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.93) 0%, rgba(248, 250, 255, 0.92) 100%),
+    radial-gradient(circle at 84% 12%, rgba(17, 70, 216, 0.06), rgba(17, 70, 216, 0) 38%);
+  box-shadow: var(--surface-shadow);
   padding: 18px;
 }
 
@@ -246,6 +265,7 @@ function clearCityHighlight() {
 
 .geo-city-item {
   width: 100%;
+  min-height: 44px;
   text-align: left;
   border-radius: 12px;
   border: 1px solid rgba(16, 26, 51, 0.14);
@@ -261,6 +281,13 @@ function clearCityHighlight() {
   transform: translateY(-1px);
   border-color: rgba(17, 70, 216, 0.4);
   background: rgba(255, 255, 255, 0.95);
+}
+
+.geo-city-item:focus-visible {
+  outline: 2px solid rgba(17, 70, 216, 0.72);
+  outline-offset: 2px;
+  border-color: rgba(17, 70, 216, 0.58);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .geo-city-item.is-active {
@@ -305,13 +332,37 @@ function clearCityHighlight() {
   width: 100%;
 }
 
+.geo-cta:focus-visible {
+  outline: 2px solid rgba(17, 70, 216, 0.72);
+  outline-offset: 3px;
+}
+
 @media (max-width: 980px) {
+  .geo::before {
+    top: 22%;
+    right: -22%;
+  }
+
+  .geo::after {
+    left: -24%;
+  }
+
   .geo-layout {
     grid-template-columns: 1fr;
   }
 
   .geo-side-card {
     max-width: 620px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .geo-city-item {
+    transition: none;
+  }
+
+  .geo-city-item:hover {
+    transform: none;
   }
 }
 </style>
