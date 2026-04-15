@@ -368,14 +368,15 @@ onBeforeUnmount(() => {
 .why-top {
   margin: 0;
   min-height: 2.5em;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.96);
   text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 0 10px rgba(199, 216, 97, 0.18);
+    0 1px 0 rgba(0, 0, 0, 0.58),
+    0 2px 12px rgba(6, 11, 24, 0.5),
+    0 0 10px rgba(199, 216, 97, 0.2);
 }
 
 .why-icon-shell {
@@ -395,13 +396,15 @@ onBeforeUnmount(() => {
   min-height: 4.4em;
   max-width: 230px;
   color: #c7d861;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
+  font-family: 'Montserrat', 'Segoe UI', sans-serif;
+  font-size: clamp(0.98rem, 1.08vw, 1.12rem);
+  font-weight: 800;
+  letter-spacing: 0.012em;
+  line-height: 1.42;
   text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.48),
-    0 0 8px rgba(199, 216, 97, 0.16);
+    0 1px 0 rgba(0, 0, 0, 0.58),
+    0 3px 14px rgba(6, 11, 24, 0.54),
+    0 0 10px rgba(199, 216, 97, 0.2);
 }
 
 .life.is-portal-open .portal-corner {
