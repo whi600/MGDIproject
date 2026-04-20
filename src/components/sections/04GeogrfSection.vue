@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import RussiaMap from '../ui/russia-map/RussiaMap.vue'
 import cityBackdropPerm from '../../assets/пермь на фонт.jpg'
 import cityBackdropCherepovets from '../../assets/черепоыец на фон.jpg'
-import cityBackdropOmsk from '../../assets/омск на фон.jpg'
+import cityBackdropOmsk from '../../assets/омск на фон обрез.jpg'
 import cityBackdropKrasnoyarsk from '../../assets/красноярск на фон.jpg'
 
 const props = defineProps({
@@ -29,6 +29,38 @@ const cityBackdropSources = Object.freeze([
   cityBackdropOmsk,
   cityBackdropKrasnoyarsk
 ])
+const cityNameByRegion = Object.freeze({
+  PER: 'Пермь',
+  VLG: 'Череповец',
+  OMS: 'Омск',
+  KYA: 'Красноярск'
+})
+const coordinatorByRegion = Object.freeze({
+  PER: {
+    regionLabel: 'Пермский край',
+    fullName: 'Нона Цинцадзе',
+    phone: '+7 (965) 578-65-17',
+    vk: 'https://vk.ru/mgdiperm'
+  },
+  VLG: {
+    regionLabel: 'Вологодская область',
+    fullName: 'Контакт уточняется',
+    phone: '—',
+    vk: ''
+  },
+  OMS: {
+    regionLabel: 'Омская область',
+    fullName: 'Валентин Гольштейн',
+    phone: '+7 (996) 397-70-59',
+    vk: 'https://vk.ru/club191156935'
+  },
+  KYA: {
+    regionLabel: 'Красноярский край',
+    fullName: 'Павел Долгополов',
+    phone: '+7 (913) 565-62-01',
+    vk: 'https://vk.ru/mgdi.krsk24'
+  }
+})
 
 const activeRegions = Object.freeze(['PER', 'VLG', 'OMS', 'KYA'])
 const selectedRegion = ref('PER')
@@ -38,6 +70,14 @@ let observer = null
 const selectedCityPhoto = computed(() => {
   const regionCode = selectedRegion.value || 'PER'
   return cityBackdropByRegion[regionCode] ?? cityBackdropPerm
+})
+const selectedCityName = computed(() => {
+  const regionCode = selectedRegion.value || 'PER'
+  return cityNameByRegion[regionCode] ?? cityNameByRegion.PER
+})
+const selectedCoordinator = computed(() => {
+  const regionCode = selectedRegion.value || 'PER'
+  return coordinatorByRegion[regionCode] ?? coordinatorByRegion.PER
 })
 
 function handleRegionClick(region) {
@@ -88,7 +128,14 @@ onBeforeUnmount(() => {
     :class="{ 'is-live': isLive }"
   >
     <div class="geo-city-backdrop" aria-hidden="true">
-      <img class="geo-city-backdrop-image" :src="selectedCityPhoto" alt="" loading="lazy" />
+      <img
+        class="geo-city-backdrop-image"
+        :class="{ 'is-omsk': selectedRegion === 'OMS' }"
+        :src="selectedCityPhoto"
+        alt=""
+        loading="lazy"
+      />
+      <p class="geo-city-backdrop-caption">{{ selectedCityName }}</p>
     </div>
 
     <div class="geo-city-preload" aria-hidden="true">
@@ -105,13 +152,14 @@ onBeforeUnmount(() => {
             class-name="geo-map"
             :selected-region="selectedRegion"
             :active-regions="activeRegions"
+            :selected-contact="selectedCoordinator"
             @region-click="handleRegionClick"
           />
 
           <div class="geo-map-legend" aria-label="Обозначения карты">
             <span class="geo-map-legend-item">
               <span class="geo-map-legend-dot is-active" aria-hidden="true"></span>
-              Города проекта
+              Регионы проекта
             </span>
             <span class="geo-map-legend-item">
               <span class="geo-map-legend-dot is-selected" aria-hidden="true"></span>
@@ -143,24 +191,48 @@ onBeforeUnmount(() => {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(226, 231, 240, 0.24) 0%,
-    rgba(226, 231, 240, 0.1) 38%,
-    rgba(226, 231, 240, 0.26) 100%
-  );
+  z-index: 2;
+  background: rgba(13, 30, 74, 0.4);
 }
 
 .geo-city-backdrop-image {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.82;
-  transform: scale(1.03);
-  filter: grayscale(1) saturate(0) contrast(1.16) brightness(0.97);
+  opacity: 1;
+  transform: none;
+  filter: saturate(1.22) contrast(1.04) brightness(1.01);
+}
+
+.geo-city-backdrop-image.is-omsk {
+  filter: saturate(1.08) contrast(1.02) brightness(0.92);
+}
+
+.geo-city-backdrop-caption {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(10px, 1.8vw, 24px);
+  transform: translateX(-50%);
+  z-index: 3;
+  margin: 0;
+  color: var(--text-main);
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: clamp(1.17rem, 1.56vw, 1.4rem);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: center;
+  white-space: nowrap;
+  padding: clamp(6px, 0.9vw, 10px) clamp(14px, 2.2vw, 20px);
+  border-radius: 999px;
+  border: 1px solid rgba(16, 26, 51, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 14px rgba(16, 26, 51, 0.08);
+  pointer-events: none;
 }
 
 .geo-city-preload {
@@ -228,7 +300,7 @@ onBeforeUnmount(() => {
 .geo-title {
   margin-bottom: clamp(14px, 1.8vw, 22px);
   max-width: 880px;
-  color: var(--primary);
+  color: var(--text-main);
   text-wrap: balance;
 }
 
@@ -281,19 +353,19 @@ onBeforeUnmount(() => {
   inline-size: 9px;
   block-size: 9px;
   border-radius: 999px;
-  border: 1.8px solid rgba(12, 14, 20, 0.95);
-  background: transparent;
+  border: 1px solid rgba(150, 161, 182, 0.72);
+  background: #cbd5e1;
   box-shadow: none;
 }
 
 .geo-map-legend-dot.is-active {
-  background: transparent;
-  border-color: rgba(12, 14, 20, 0.95);
+  background: #9ca3af;
+  border-color: rgba(150, 161, 182, 0.72);
 }
 
 .geo-map-legend-dot.is-selected {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(12, 14, 20, 0.98);
+  background: var(--text-main);
+  border-color: var(--text-main);
 }
 
 .geo-map-card:hover {
@@ -322,6 +394,7 @@ onBeforeUnmount(() => {
   .geo::after {
     left: -24%;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
