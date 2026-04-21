@@ -17,8 +17,14 @@ const router = createRouter({
     }
   ],
   scrollBehavior(to, from, savedPosition) {
+    const isInitialNavigation = !from.name
+
     if (savedPosition) {
       return savedPosition
+    }
+
+    if (isInitialNavigation) {
+      return { top: 0, left: 0, behavior: 'auto' }
     }
 
     if (to.hash) {
@@ -30,7 +36,7 @@ const router = createRouter({
       }
     }
 
-    return { top: 0, behavior: 'smooth' }
+    return { top: 0, left: 0, behavior: 'smooth' }
   }
 })
 

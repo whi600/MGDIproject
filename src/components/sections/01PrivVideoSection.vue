@@ -18,11 +18,6 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
       <p class="hero-lead">
         Яркая команда, живая вера и реальные дела для Бога.
       </p>
-
-      <div class="hero-actions">
-        <a class="hero-btn" href="#historyproect2">Узнать больше</a>
-        <a class="hero-btn" href="#4geogrf">Смотреть города</a>
-      </div>
     </div>
   </section>
 </template>
@@ -120,36 +115,6 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
   text-wrap: pretty;
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.hero-btn {
-  min-width: 196px;
-  min-height: 46px;
-  padding: 14px 22px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.96);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  backdrop-filter: blur(5px);
-  transition: background 0.24s ease, border-color 0.24s ease, transform 0.24s ease;
-}
-
-.hero-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-1px);
-}
-
 @media (max-width: 900px) {
   .hero {
     padding: calc(102px + env(safe-area-inset-top, 0px)) 0 58px;
@@ -162,13 +127,6 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
   .hero-lead {
     font-size: 1rem;
     max-width: 46ch;
-  }
-
-  .hero-btn {
-    min-width: 170px;
-    min-height: 44px;
-    padding: 12px 16px;
-    font-size: 0.72rem;
   }
 }
 
@@ -190,19 +148,6 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
     font-size: 0.95rem;
     line-height: 1.58;
   }
-
-  .hero-actions {
-    width: 100%;
-    margin-top: 6px;
-    gap: 10px;
-  }
-
-  .hero-btn {
-    width: 100%;
-    min-width: 0;
-    max-width: 380px;
-    padding: 11px 14px;
-  }
 }
 
 @media (max-width: 420px) {
@@ -216,14 +161,6 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
 
   .hero-lead {
     font-size: 0.9rem;
-  }
-}
-
-@media (hover: none) {
-  .hero-btn:hover {
-    transform: none;
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.72);
   }
 }
 </style>

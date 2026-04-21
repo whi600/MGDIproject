@@ -127,14 +127,13 @@ onBeforeUnmount(() => {
     data-block-name="4geogrf"
     :class="{ 'is-live': isLive }"
   >
-    <div class="geo-city-backdrop" aria-hidden="true">
-      <img
-        class="geo-city-backdrop-image"
-        :class="{ 'is-omsk': selectedRegion === 'OMS' }"
-        :src="selectedCityPhoto"
-        alt=""
-        loading="lazy"
-      />
+    <div
+      class="geo-city-backdrop"
+      :class="{ 'is-omsk': selectedRegion === 'OMS' }"
+      :style="{ '--geo-city-image': `url(${selectedCityPhoto})` }"
+      aria-hidden="true"
+    >
+      <div class="geo-city-backdrop-image"></div>
       <p class="geo-city-backdrop-caption">{{ selectedCityName }}</p>
     </div>
 
@@ -187,29 +186,28 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
+.geo-city-backdrop-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--geo-city-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  filter: saturate(1.22) contrast(1.04) brightness(1.01);
+}
+
+.geo-city-backdrop.is-omsk .geo-city-backdrop-image {
+  filter: saturate(1.08) contrast(1.02) brightness(0.92);
+}
+
 .geo-city-backdrop::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 2;
   background: rgba(13, 30, 74, 0.4);
-}
-
-.geo-city-backdrop-image {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 1;
-  transform: none;
-  filter: saturate(1.22) contrast(1.04) brightness(1.01);
-}
-
-.geo-city-backdrop-image.is-omsk {
-  filter: saturate(1.08) contrast(1.02) brightness(0.92);
 }
 
 .geo-city-backdrop-caption {
@@ -391,9 +389,11 @@ onBeforeUnmount(() => {
   }
 
   .geo-map {
+    width: 110%;
+    margin-left: -5%;
     --map-max-inline-size: none;
     --map-margin-inline: auto;
-    --map-clip-path: inset(15% 0 0 0);
+    --map-clip-path: inset(12% 0 0 0);
   }
 
   .geo-map-legend {
@@ -433,7 +433,9 @@ onBeforeUnmount(() => {
   }
 
   .geo-map {
-    --map-clip-path: inset(10% 0 0 0);
+    width: 122%;
+    margin-left: -11%;
+    --map-clip-path: inset(7% 0 0 0);
   }
 
   .geo-map-legend-item {

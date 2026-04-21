@@ -7,17 +7,14 @@ import ThreeDavvideoSection from '../components/sections/03DavvideoSection.vue'
 import Geogrf4Section from '../components/sections/04GeogrfSection.vue'
 import MomentsSection from '../components/sections/05MomentsSection.vue'
 import FinalSection from '../components/sections/06FinalSection.vue'
-import { useScrollEffects } from '../composables/useScrollEffects'
 import {
   whyCards
 } from '../data/homePageData'
-
-const { isScrolled } = useScrollEffects()
 </script>
 
 <template>
   <div class="site-shell">
-    <SiteHeader :is-scrolled="isScrolled" />
+    <SiteHeader />
 
     <main>
       <PrivVideoSection />

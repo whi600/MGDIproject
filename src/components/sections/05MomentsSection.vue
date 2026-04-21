@@ -118,6 +118,7 @@ const assetMomentConfigs = Object.freeze([
     layout: 'tall',
     title: 'Обучение',
     location: 'Учебный блок',
+    hidePreviewLocation: true,
     tag: 'рост',
     description: 'Живое обучение, где знания сразу переходят в практику.',
     date: 'Весна 2026',
@@ -128,6 +129,7 @@ const assetMomentConfigs = Object.freeze([
     layout: 'mid-a',
     title: 'Практика',
     location: 'Командная практика',
+    hidePreviewLocation: true,
     tag: 'действие',
     description: 'Практические задания, совместная работа и закрепление навыков.',
     date: 'Весна 2026',
@@ -138,6 +140,7 @@ const assetMomentConfigs = Object.freeze([
     layout: 'mid-b',
     title: 'Поклонение',
     location: 'Командное поклонение',
+    hidePreviewLocation: true,
     tag: 'поклонение',
     description: 'Время единого поклонения, музыки и молитвенной глубины.',
     date: 'Весна 2026',
@@ -148,6 +151,7 @@ const assetMomentConfigs = Object.freeze([
     layout: 'small-a',
     title: 'Пасхальные моменты',
     location: 'Пасховая встреча',
+    hidePreviewLocation: true,
     tag: 'праздник',
     description: 'Светлые кадры пасхальных дней и особой атмосферы праздника.',
     date: 'Весна 2026',
@@ -293,6 +297,7 @@ const categorizedAssetMoments = computed(() =>
         image: preview.src,
         layout: config.layout,
         previewObjectPosition: config.previewObjectPosition ?? '',
+        hidePreviewLocation: Boolean(config.hidePreviewLocation),
         gallery,
         photoCount: gallery.length,
         title: config.title,
@@ -311,16 +316,17 @@ const fallbackMoments = computed(() =>
   propCardImages.value.slice(0, layoutPattern.length).map((image, index) => {
     const meta = fallbackMeta[index % fallbackMeta.length]
 
-    return {
-      id: `moment-${index + 1}`,
-      image,
-      layout: layoutPattern[index],
-      previewObjectPosition: '',
-      gallery: [
-        {
-          id: `moment-${index + 1}-photo-1`,
-          src: image,
-          alt: meta.title,
+      return {
+        id: `moment-${index + 1}`,
+        image,
+        layout: layoutPattern[index],
+        previewObjectPosition: '',
+        hidePreviewLocation: false,
+        gallery: [
+          {
+            id: `moment-${index + 1}-photo-1`,
+            src: image,
+            alt: meta.title,
           title: meta.title
         }
       ],
@@ -548,7 +554,7 @@ onBeforeUnmount(() => {
           <span class="moment-noise" aria-hidden="true"></span>
 
           <span class="moment-caption">
-            <span class="moment-caption-location">{{ moment.location }}</span>
+            <span v-if="moment.location && !moment.hidePreviewLocation" class="moment-caption-location">{{ moment.location }}</span>
             <span class="moment-caption-title">{{ moment.title }}</span>
             <span class="moment-caption-tag">{{ moment.tag }}</span>
           </span>
@@ -1131,37 +1137,43 @@ onBeforeUnmount(() => {
   }
 
   .moments-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-template-areas: none;
-    grid-auto-rows: 214px;
-  }
-
-  .layout-hero,
-  .layout-wide,
-  .layout-tall,
-  .layout-mid-a,
-  .layout-mid-b,
-  .layout-small-a,
-  .layout-small-b,
-  .layout-support {
-    grid-area: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(6, clamp(122px, 31vw, 162px));
+    grid-template-areas:
+      'hero hero'
+      'hero hero'
+      'wide tall'
+      'mid-a tall'
+      'mid-b small-a'
+      'small-b support';
+    gap: 8px;
   }
 
   .moment-card {
-    border-radius: 16px;
+    border-radius: 14px;
   }
 
   .moment-caption {
-    left: 12px;
-    right: 12px;
-    bottom: 10px;
-    gap: 4px;
+    left: 10px;
+    right: 10px;
+    bottom: 9px;
+    gap: 3px;
+  }
+
+  .moment-caption-location {
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+  }
+
+  .moment-caption-title {
+    font-size: clamp(0.82rem, 3.2vw, 0.96rem);
+    line-height: 1.16;
   }
 
   .moment-caption-tag {
-    padding: 4px 9px;
-    font-size: 0.62rem;
+    padding: 3px 8px;
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
   }
 
   .moment-viewer {
@@ -1194,6 +1206,23 @@ onBeforeUnmount(() => {
 
   .viewer-thumb {
     height: 52px;
+  }
+}
+
+@media (max-width: 420px) {
+  .moments-grid {
+    grid-template-rows: repeat(6, clamp(114px, 30vw, 144px));
+    gap: 7px;
+  }
+
+  .moment-caption {
+    left: 9px;
+    right: 9px;
+    bottom: 8px;
+  }
+
+  .moment-caption-title {
+    font-size: clamp(0.76rem, 3.05vw, 0.9rem);
   }
 }
 

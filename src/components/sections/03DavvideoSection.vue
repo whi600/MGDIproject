@@ -417,11 +417,36 @@ onBeforeUnmount(() => {
 
   .life-cards {
     margin-top: 6px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'card-1 card-1'
+      'card-2 card-3'
+      'card-4 card-4';
+    gap: 12px;
   }
 
-  .why-card {
+  .life-cards .why-card {
+    grid-column: auto !important;
+    min-height: clamp(208px, 31vw, 260px);
     padding: 14px 8px 10px;
     gap: 10px;
+  }
+
+  .life-cards .why-card:nth-child(1) {
+    grid-area: card-1;
+  }
+
+  .life-cards .why-card:nth-child(2) {
+    grid-area: card-2;
+  }
+
+  .life-cards .why-card:nth-child(3) {
+    grid-area: card-3;
+  }
+
+  .life-cards .why-card:nth-child(4) {
+    grid-area: card-4;
   }
 
   .why-top {
@@ -444,10 +469,20 @@ onBeforeUnmount(() => {
     line-height: 1.56;
   }
 
-  .why-card {
+  .life-cards {
+    gap: 9px;
+  }
+
+  .life-cards .why-card {
+    min-height: clamp(174px, 45vw, 220px);
     border-radius: 16px;
     padding: 13px 10px 11px;
     gap: 8px;
+  }
+
+  .life-cards .why-card:nth-child(1),
+  .life-cards .why-card:nth-child(4) {
+    min-height: clamp(186px, 50vw, 236px);
   }
 
   .why-top {
@@ -456,7 +491,7 @@ onBeforeUnmount(() => {
   }
 
   .why-icon-shell {
-    width: min(100%, 148px);
+    width: min(100%, 126px);
   }
 
   .why-bottom {
