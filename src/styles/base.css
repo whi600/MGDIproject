@@ -51,6 +51,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -63,6 +64,7 @@ body {
   font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img,
@@ -309,12 +311,37 @@ a {
   }
 
   .section-block {
-    padding: 84px 0;
+    padding: 76px 0;
   }
 
   .section-title {
     font-size: clamp(1.75rem, 10vw, 3rem);
     line-height: 1.02;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .section-block {
+    padding: 66px 0;
+  }
+
+  .section-kicker {
+    margin-bottom: 10px;
+    letter-spacing: 0.22em;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .section-block {
+    padding: 60px 0;
   }
 }
 

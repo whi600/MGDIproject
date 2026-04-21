@@ -167,6 +167,7 @@ const patternRows = Array.from({ length: 6 }, (_, index) => ({
 
 .final-btn {
   min-width: 210px;
+  min-height: 46px;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
 }
@@ -213,17 +214,24 @@ const patternRows = Array.from({ length: 6 }, (_, index) => ({
   }
 
   .final-actions {
+    margin-top: 20px;
     gap: 10px;
   }
 
   .final-btn {
     min-width: 188px;
+    min-height: 44px;
   }
 }
 
 @media (max-width: 640px) {
+  .final-shell {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
   .final-title {
     line-height: 1;
+    max-width: 12ch;
   }
 
   .final-actions {
@@ -234,6 +242,16 @@ const patternRows = Array.from({ length: 6 }, (_, index) => ({
   .final-btn {
     width: 100%;
     min-width: 0;
+    font-size: 0.88rem;
+  }
+}
+
+@media (hover: none) {
+  .final-btn:hover {
+    background: var(--accent-lime);
+    color: #11131b;
+    transform: none;
+    box-shadow: 0 14px 30px rgba(191, 211, 90, 0.34);
   }
 }
 

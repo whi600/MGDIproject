@@ -22,9 +22,10 @@ const router = createRouter({
     }
 
     if (to.hash) {
+      const mobileOffset = typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches
       return {
         el: to.hash,
-        top: 96,
+        top: mobileOffset ? 128 : 96,
         behavior: 'smooth'
       }
     }

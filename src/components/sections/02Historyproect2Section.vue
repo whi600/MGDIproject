@@ -189,6 +189,7 @@ onBeforeUnmount(() => {
   --about-portal-duration: 2.1s;
   --about-portal-ease: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  min-width: 0;
   overflow: visible;
   isolation: isolate;
 }
@@ -385,9 +386,14 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 50%;
   z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   transform: translateY(-50%);
   border: 0;
-  padding: 0 8px;
+  padding: 0;
+  border-radius: 999px;
   background: transparent;
   color: rgba(250, 253, 255, 0.98);
   font-size: clamp(2rem, 2.6vw, 2.7rem);
@@ -401,11 +407,11 @@ onBeforeUnmount(() => {
 }
 
 .about-team-nav-prev {
-  left: 10px;
+  left: 8px;
 }
 
 .about-team-nav-next {
-  right: 10px;
+  right: 8px;
 }
 
 .about-team-nav:hover {
@@ -504,6 +510,7 @@ onBeforeUnmount(() => {
 
   .about-content {
     --about-strip-height: 17px;
+    --about-portal-duration: 1.65s;
   }
 
   .about-panel {
@@ -521,11 +528,42 @@ onBeforeUnmount(() => {
   }
 
   .about-team {
-    min-height: 240px;
+    min-height: 236px;
+  }
+
+  .about-team-nav {
+    background: rgba(5, 11, 24, 0.26);
+    backdrop-filter: blur(2px);
+    font-size: 2rem;
+  }
+
+  .about-team-counter {
+    right: 12px;
+    bottom: 12px;
   }
 }
 
 @media (max-width: 640px) {
+  .about-text {
+    gap: 10px;
+  }
+
+  .about-text p {
+    font-size: 0.92rem;
+    line-height: 1.56;
+  }
+
+  .about-media-stack {
+    gap: 10px;
+  }
+
+  .about-media figcaption {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+
   .about-heading {
     max-width: 12ch;
   }
@@ -536,6 +574,33 @@ onBeforeUnmount(() => {
 
   .about-team {
     min-height: 210px;
+  }
+
+  .about-team-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-team-counter {
+    right: 10px;
+    top: 10px;
+    bottom: auto;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(6, 11, 24, 0.45);
+    font-size: 0.66rem;
+  }
+}
+
+@media (hover: none) {
+  .about-media:hover {
+    transform: translate3d(0, 0, 0);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .about-team-nav:hover {
+    transform: translateY(-50%);
+    color: rgba(250, 253, 255, 0.98);
   }
 }
 

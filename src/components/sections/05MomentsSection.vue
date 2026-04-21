@@ -1049,6 +1049,15 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 900px) {
+  .moments-shell {
+    gap: 16px;
+  }
+
+  .moments-lead {
+    font-size: 0.96rem;
+    line-height: 1.56;
+  }
+
   .moments-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(6, clamp(150px, 26vw, 210px));
@@ -1065,7 +1074,7 @@ onBeforeUnmount(() => {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     align-content: center;
-    padding: 14px;
+    padding: 14px 14px calc(18px + env(safe-area-inset-bottom, 0px));
     gap: 10px;
   }
 
@@ -1079,7 +1088,7 @@ onBeforeUnmount(() => {
 
   .viewer-nav {
     top: auto;
-    bottom: 14px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     transform: none;
     width: 46px;
     height: 46px;
@@ -1104,11 +1113,28 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 640px) {
+  .moments-shell {
+    gap: 14px;
+  }
+
+  .moments-intro {
+    gap: 10px;
+  }
+
+  .moments-title {
+    max-width: 13ch;
+  }
+
+  .moments-lead {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
   .moments-grid {
     grid-template-columns: 1fr;
     grid-template-rows: none;
     grid-template-areas: none;
-    grid-auto-rows: 220px;
+    grid-auto-rows: 214px;
   }
 
   .layout-hero,
@@ -1120,6 +1146,80 @@ onBeforeUnmount(() => {
   .layout-small-b,
   .layout-support {
     grid-area: auto;
+  }
+
+  .moment-card {
+    border-radius: 16px;
+  }
+
+  .moment-caption {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    gap: 4px;
+  }
+
+  .moment-caption-tag {
+    padding: 4px 9px;
+    font-size: 0.62rem;
+  }
+
+  .moment-viewer {
+    align-content: start;
+    padding-top: calc(56px + env(safe-area-inset-top, 0px));
+  }
+
+  .viewer-close {
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    right: 12px;
+  }
+
+  .viewer-image {
+    height: min(48vh, 360px);
+  }
+
+  .viewer-panel {
+    gap: 8px;
+    padding: 13px;
+  }
+
+  .viewer-title {
+    font-size: clamp(1.06rem, 6.5vw, 1.4rem);
+  }
+
+  .viewer-thumbs {
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 7px;
+  }
+
+  .viewer-thumb {
+    height: 52px;
+  }
+}
+
+@media (hover: none) {
+  .moment-card:hover,
+  .moment-card:focus-visible {
+    transform: none;
+    box-shadow: 0 18px 34px rgba(9, 18, 39, 0.22);
+  }
+
+  .moment-card:hover .moment-image,
+  .moment-card:focus-visible .moment-image {
+    transform: scale(1.01);
+    filter: saturate(0.95) contrast(0.99);
+  }
+
+  .viewer-nav:not(:disabled):hover {
+    transform: translateY(-50%);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(222, 231, 255, 0.9);
+  }
+}
+
+@media (hover: none) and (max-width: 900px) {
+  .viewer-nav:not(:disabled):hover {
+    transform: none;
   }
 }
 

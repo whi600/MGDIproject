@@ -105,6 +105,9 @@ const navItems = [
 }
 
 .main-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   color: rgba(255, 255, 255, 0.88);
   font-weight: 600;
   font-size: 0.82rem;
@@ -121,6 +124,7 @@ const navItems = [
 .header-cta {
   justify-self: end;
   min-width: 176px;
+  min-height: 42px;
   text-align: center;
   padding: 11px 19px;
   border: 1px solid rgba(255, 255, 255, 0.64);
@@ -180,23 +184,87 @@ const navItems = [
     grid-column: span 2;
     justify-content: flex-start;
     overflow-x: auto;
-    padding: 6px 0 6px;
+    padding: 4px 0 4px;
     border: none;
     border-radius: 0;
     background: none;
     backdrop-filter: none;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .main-nav a {
     white-space: nowrap;
+    padding: 9px 12px;
+    min-height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
     font-size: 0.76rem;
+    scroll-snap-align: start;
   }
 
   .header-cta {
     margin-right: -8px;
     min-width: auto;
-    padding: 8px 14px;
+    min-height: 42px;
+    padding: 8px 16px;
     font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 6px 0;
+  }
+
+  .logo {
+    width: 128px;
+    height: 56px;
+    margin-left: -6px;
+  }
+
+  .logo-image {
+    width: 120px;
+    transform: translateY(-20px);
+  }
+
+  .header-grid {
+    gap: 10px 8px;
+  }
+
+  .main-nav {
+    gap: 8px;
+  }
+
+  .main-nav a {
+    padding: 8px 11px;
+    min-height: 40px;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .header-cta {
+    padding: 8px 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (hover: none) {
+  .main-nav a:hover {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .header-cta:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.64);
   }
 }
 </style>

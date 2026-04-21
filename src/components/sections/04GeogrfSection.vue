@@ -386,6 +386,26 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 980px) {
+  .geo-title {
+    margin-bottom: 14px;
+  }
+
+  .geo-map {
+    --map-max-inline-size: none;
+    --map-margin-inline: auto;
+    --map-clip-path: inset(15% 0 0 0);
+  }
+
+  .geo-map-legend {
+    margin-top: 8px;
+    gap: 8px;
+  }
+
+  .geo-map-legend-item {
+    font-size: 0.74rem;
+    padding: 6px 10px;
+  }
+
   .geo::before {
     top: 22%;
     right: -22%;
@@ -395,6 +415,36 @@ onBeforeUnmount(() => {
     left: -24%;
   }
 
+}
+
+@media (max-width: 640px) {
+  .geo-kicker {
+    letter-spacing: 0.26em;
+  }
+
+  .geo-city-backdrop-caption {
+    bottom: 8px;
+    font-size: 1.02rem;
+    padding: 6px 12px;
+  }
+
+  .geo-shell::after {
+    display: none;
+  }
+
+  .geo-map {
+    --map-clip-path: inset(10% 0 0 0);
+  }
+
+  .geo-map-legend-item {
+    min-height: 34px;
+    font-size: 0.7rem;
+  }
+
+  .geo::before,
+  .geo::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -407,6 +407,8 @@ onBeforeUnmount(() => {
 
   .life-lead {
     margin-bottom: 20px;
+    font-size: 0.98rem;
+    line-height: 1.62;
   }
 
   .life::after {
@@ -419,6 +421,7 @@ onBeforeUnmount(() => {
 
   .why-card {
     padding: 14px 8px 10px;
+    gap: 10px;
   }
 
   .why-top {
@@ -431,6 +434,42 @@ onBeforeUnmount(() => {
 
   .why-bottom {
     min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .life-lead {
+    margin: 12px 0 16px;
+    font-size: 0.92rem;
+    line-height: 1.56;
+  }
+
+  .why-card {
+    border-radius: 16px;
+    padding: 13px 10px 11px;
+    gap: 8px;
+  }
+
+  .why-top {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+  }
+
+  .why-icon-shell {
+    width: min(100%, 148px);
+  }
+
+  .why-bottom {
+    max-width: 24ch;
+    font-size: 0.95rem;
+    line-height: 1.44;
+  }
+}
+
+@media (hover: none) {
+  .why-card:hover {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 18px 34px rgba(4, 8, 22, 0.24);
   }
 }
 

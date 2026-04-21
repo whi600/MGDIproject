@@ -103,6 +103,9 @@ const socialLinks = [
 }
 
 .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   width: fit-content;
   font-size: 0.96rem;
   line-height: 1.38;
@@ -126,6 +129,47 @@ const socialLinks = [
 
   .footer-brand {
     grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    padding: 30px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+    padding-right: 0;
+  }
+
+  .footer-muted {
+    font-size: 0.92rem;
+    line-height: 1.54;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 8px;
+    font-size: 0.7rem;
+  }
+
+  .footer-links {
+    gap: 6px;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+    min-height: 38px;
+  }
+}
+
+@media (hover: none) {
+  .footer-links a:hover {
+    color: rgba(255, 255, 255, 0.84);
   }
 }
 </style>

@@ -33,7 +33,7 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 124px 0 70px;
+  padding: calc(116px + env(safe-area-inset-top, 0px)) 0 70px;
   overflow: hidden;
   background: #050810;
 }
@@ -85,6 +85,7 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
   display: grid;
   justify-items: center;
   gap: 18px;
+  width: min(820px, 100%);
   text-align: center;
 }
 
@@ -129,6 +130,7 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
 
 .hero-btn {
   min-width: 196px;
+  min-height: 46px;
   padding: 14px 22px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.72);
@@ -150,7 +152,7 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
 
 @media (max-width: 900px) {
   .hero {
-    padding: 112px 0 58px;
+    padding: calc(102px + env(safe-area-inset-top, 0px)) 0 58px;
   }
 
   .hero-content {
@@ -159,12 +161,69 @@ import heroVideo from '../../assets/section-01/02-hero-background.mp4'
 
   .hero-lead {
     font-size: 1rem;
+    max-width: 46ch;
   }
 
   .hero-btn {
     min-width: 170px;
+    min-height: 44px;
     padding: 12px 16px;
     font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: calc(96px + env(safe-area-inset-top, 0px)) 0 48px;
+  }
+
+  .hero-content {
+    gap: 12px;
+  }
+
+  .hero-logo::after {
+    margin-top: 8px;
+    width: min(82vw, 280px);
+  }
+
+  .hero-lead {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .hero-actions {
+    width: 100%;
+    margin-top: 6px;
+    gap: 10px;
+  }
+
+  .hero-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 380px;
+    padding: 11px 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    padding-top: calc(90px + env(safe-area-inset-top, 0px));
+  }
+
+  .hero-logo {
+    letter-spacing: 0.05em;
+  }
+
+  .hero-lead {
+    font-size: 0.9rem;
+  }
+}
+
+@media (hover: none) {
+  .hero-btn:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.72);
   }
 }
 </style>

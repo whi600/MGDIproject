@@ -179,7 +179,7 @@ function updateContactBubblePosition() {
 
   const sidePadding = 14
   const availableWidth = Math.max(140, hostRect.width - sidePadding * 2)
-  const bubbleMaxWidth = Math.min(340, availableWidth)
+  const bubbleMaxWidth = Math.min(hostRect.width < 760 ? 320 : 340, availableWidth)
   const bubbleHalfWidth = bubbleMaxWidth / 2
 
   const anchorX = regionRect.left - hostRect.left + regionRect.width / 2
@@ -190,7 +190,10 @@ function updateContactBubblePosition() {
     Math.max(sidePadding + bubbleHalfWidth, anchorX)
   )
   const perRegionYOffset = BUBBLE_Y_OFFSET_BY_REGION[selectedCode] ?? 0
-  const y = Math.max(24, anchorY + perRegionYOffset)
+  const estimatedBubbleHeight = hostRect.width < 760 ? 156 : 138
+  const minAnchorY = estimatedBubbleHeight + 10
+  const maxAnchorY = Math.max(minAnchorY, hostRect.height - 12)
+  const y = Math.min(maxAnchorY, Math.max(minAnchorY, anchorY + perRegionYOffset))
   const pointerShift = Math.max(
     -bubbleHalfWidth + 26,
     Math.min(bubbleHalfWidth - 26, anchorX - x)
@@ -610,6 +613,34 @@ watch(
   .map-contact-row {
     font-size: 0.86rem;
     line-height: 1.38;
+  }
+}
+
+@media (max-width: 640px) {
+  .map-root :deep(.map-base-region) {
+    stroke-width: 0.9;
+  }
+
+  .map-contact-bubble {
+    inline-size: min(var(--contact-max-width, 300px), calc(100% - 10px));
+    padding: 10px 11px;
+    border-radius: 13px;
+  }
+
+  .map-contact-region {
+    margin-bottom: 6px;
+    font-size: 0.7rem;
+  }
+
+  .map-contact-row {
+    font-size: 0.8rem;
+    line-height: 1.34;
+  }
+}
+
+@media (hover: none) {
+  .map-contact-link:hover {
+    border-bottom-color: rgba(17, 70, 216, 0.4);
   }
 }
 </style>
